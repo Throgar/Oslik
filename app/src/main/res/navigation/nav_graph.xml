@@ -8,6 +8,17 @@
     <fragment
         android:id="@+id/article_list_fragment"
         android:name="com.example.oslik.ArticleListFragment"
-        tools:layout="@layout/fragment_article_list"/>
+        tools:layout="@layout/fragment_article_list">
+        <action
+            android:id="@+id/action_article_list_fragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/articleDetailFragment"
+        android:name="com.example.oslik.ArticleDetailFragment"
+        android:label="ArticleDetailFragment"
+        tools:layout="@layout/fragment_article_detail"
+        />
 
 </navigation>
