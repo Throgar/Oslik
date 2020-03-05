@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.oslik.databinding.FragmentArticleListBinding
+import com.example.oslik.models.DataModel
 import java.util.logging.Logger
 
 class ArticleListFragment : Fragment() {
@@ -20,6 +21,9 @@ class ArticleListFragment : Fragment() {
     ): View? {
         val binding = FragmentArticleListBinding.inflate(inflater, container, false)
         binding.articleFragment = this
+
+        DataModel().loadArticles()
+
         return binding.root
     }
 
