@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Oslik</string>
+    <string name="article_img_thumbnail_description">Thumbnail of an article</string>
 </resources>
