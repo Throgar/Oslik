@@ -11,7 +11,7 @@ class DataModel {
     private val Log = Logger.getLogger(this::class.java.toString())
     private val URL = "http://www.osel.cz/"
 
-    val articleThumbnail: MutableLiveData<List<ArticleThumbnail>> = MutableLiveData()
+    val articleThumbnail = MutableLiveData<List<ArticleThumbnail>>()
 
     fun loadArticles() {
         Log.info("Loading articles from: $URL")
@@ -44,13 +44,23 @@ class DataModel {
                 )
             }
 
-            articles.forEach {
-                Log.info("Articles: $it")
+            withContext(Dispatchers.Main) {
+                Log.info("Assigning articles to LiveData")
+                articleThumbnail.value = articles
             }
         }
-
-        articleThumbnail.value = articles
     }
+
+    companion object {
+
+        @Volatile private var instance: DataModel? = null
+
+        fun getInstance() =
+            instance ?: synchronized(this) {
+                instance ?: DataModel().also { instance = it }
+            }
+    }
+
 }
 
 
