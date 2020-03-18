@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.oslik.data.ArticleThumbnail
 import com.example.oslik.databinding.ArticleListItemBinding
+import java.util.logging.Logger
 
 class ArticleListAdapter: ListAdapter<ArticleThumbnail, RecyclerView.ViewHolder>(ArticleDiffCallBack()){
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ArticleViewHolder(ArticleListItemBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
@@ -22,8 +24,10 @@ class ArticleListAdapter: ListAdapter<ArticleThumbnail, RecyclerView.ViewHolder>
     }
 
     class ArticleViewHolder(
-        val binding: ArticleListItemBinding
+        private val binding: ArticleListItemBinding
     ): RecyclerView.ViewHolder(binding.root) {
+
+        val Log = Logger.getLogger(this::class.java.toString())
 
         init {
             binding.setClickListener {
@@ -36,9 +40,10 @@ class ArticleListAdapter: ListAdapter<ArticleThumbnail, RecyclerView.ViewHolder>
         fun bind(item: ArticleThumbnail) {
             binding.article = item
             binding.executePendingBindings()
+            Log.warning("Binding item: ${item.title}")
         }
 
-        fun navigateToArticle(item: ArticleThumbnail, view: View) {
+        private fun navigateToArticle(item: ArticleThumbnail, view: View) {
             //TODO navigation
         }
 
