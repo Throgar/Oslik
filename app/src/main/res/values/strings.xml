@@ -1,4 +1,7 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Oslik</string>
     <string name="article_img_thumbnail_description">Thumbnail of an article</string>
+    <string name="author" tools:ignore="Typos">Autor: </string>
+
+    <string name="dummy_text_long">This is some description of an article. Not so long description, we should cut it a little bit. Maybe with max lines or something.</string>
 </resources>

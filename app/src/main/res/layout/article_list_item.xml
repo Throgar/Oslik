@@ -29,42 +29,88 @@
             android:contentDescription="@string/article_img_thumbnail_description"
             android:layout_marginStart="@dimen/margin_normal"
             app:imageFromUrl="@{article.img}"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/divider"
             app:layout_constraintStart_toStartOf="parent"
+            tools:src="@drawable/ic_launcher_background"
             />
 
         <TextView
             android:id="@+id/article_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{article.title}"
-            android:textColor="@android:color/white"
+            android:textColor="@color/orange"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/img_thumbnail"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_small"
             tools:text="This is some title of an article"
             />
 
         <TextView
             android:id="@+id/article_description"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{article.note}"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             android:layout_marginStart="@dimen/margin_normal"
             android:layout_marginEnd="@dimen/margin_normal"
             android:layout_marginTop="@dimen/margin_small"
             app:layout_constraintTop_toBottomOf="@id/article_title"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/author_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/img_thumbnail"
-            tools:text="This is some description of an article. Not so long description,
-             we should cut it a little bit. Maybe with max lines or something..."
+            android:maxLines="3"
+            android:ellipsize="end"
+            tools:text="@string/dummy_text_long"
             />
 
+        <TextView
+            android:id="@+id/author_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/orange"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@string/author"
+            app:layout_constraintTop_toBottomOf="@id/article_description"
+            app:layout_constraintBottom_toBottomOf="@id/divider"
+            app:layout_constraintStart_toEndOf="@id/img_thumbnail"
+            />
+
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@{article.author}"
+            app:layout_constraintTop_toBottomOf="@id/article_description"
+            app:layout_constraintBottom_toBottomOf="@id/divider"
+            app:layout_constraintStart_toEndOf="@id/author_label"
+            tools:text="Mihulka"
+            />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:alpha="0.3"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

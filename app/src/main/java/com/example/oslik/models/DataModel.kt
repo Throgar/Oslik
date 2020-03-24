@@ -12,6 +12,7 @@ class DataModel {
     private val URL = "http://www.osel.cz/"
 
     val articleThumbnail = MutableLiveData<List<ArticleThumbnail>>()
+    val articleContent = MutableLiveData<String>()
 
     fun loadArticles() {
         Log.info("Loading articles from: $URL")
@@ -48,6 +49,28 @@ class DataModel {
                 Log.info("Assigning articles to LiveData")
                 articleThumbnail.value = articles
             }
+        }
+    }
+
+    fun loadContent(url: String) {
+        Log.info("Loading content from: $url")
+
+        val stringBuilder = StringBuilder()
+
+        val scope = CoroutineScope(Dispatchers.Default)
+
+        scope.launch {
+
+            val doc = withContext(Dispatchers.IO) {
+                Jsoup.connect(url).get()
+            }
+
+            doc.getElementsByClass("clanek_detial_obsah")[0]
+                .getElementsByTag("p")
+                .forEach {
+                    //TODO: Parse content, remove white spaces
+                }
+
         }
     }
 
